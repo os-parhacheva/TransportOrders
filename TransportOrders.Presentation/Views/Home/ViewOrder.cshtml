@@ -1,0 +1,33 @@
+﻿@using TransportOrders.Presentation.Models.DTO
+
+@{
+    ViewData["Title"] = "ViewOrder";
+}
+
+@model OrderDTO
+
+<div class="order-info">
+    <div class="info-row">
+        <div class="info-label">Номер заказа:</div>
+        <div class="info-value">@Model.Id</div>
+    </div>
+    <div class="info-row">
+        <div class="info-label">Отправитель:</div>
+        <div class="info-value">@Model.CitySender, @Model.AddressSender</div>
+    </div>
+    
+    <div class="info-row">
+        <div class="info-label">Получатель:</div>
+        <div class="info-value">@Model.CityRecipient, @Model.AddressRecipient</div>
+    </div>
+    
+    <div class="info-row">
+        <div class="info-label">Вес:</div>
+        <div class="info-value">@Model.CargoWeight кг</div>
+    </div>
+    
+    <div class="info-row">
+        <div class="info-label">Дата забора:</div>
+        <div class="info-value">@Model.PickupDate.ToString("dd.MM.yyyy")</div>
+    </div>
+</div>

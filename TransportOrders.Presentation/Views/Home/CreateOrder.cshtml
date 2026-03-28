@@ -1,0 +1,74 @@
+﻿@using TransportOrders.Presentation.Models.DTO
+
+@model OrderDTO
+
+@{
+    ViewData["Title"] = "Создание заказа";
+}
+
+<div class="form-container mt-5">
+    <div class="card form-card">
+        <div class="form-header">
+            <h2 class="mb-0">
+                <i class="bi bi-plus-circle"></i> Создание заказа
+            </h2>
+        </div>
+        <div class="form-body">
+            <form asp-action="CreateOrder" method="post">
+                <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label required-field">Город отправителя</label>
+                        <input asp-for="CitySender" class="form-control" placeholder="Например: Москва" />
+                        <span asp-validation-for="CitySender" class="text-danger small"></span>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label required-field">Адрес отправителя</label>
+                        <input asp-for="AddressSender" class="form-control" placeholder="Улица, дом, квартира" />
+                        <span asp-validation-for="AddressSender" class="text-danger small"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label required-field">Город получателя</label>
+                        <input asp-for="CityRecipient" class="form-control" placeholder="Например: Санкт-Петербург" />
+                        <span asp-validation-for="CityRecipient" class="text-danger small"></span>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label required-field">Адрес получателя</label>
+                        <input asp-for="AddressRecipient" class="form-control" placeholder="Улица, дом, квартира" />
+                        <span asp-validation-for="AddressRecipient" class="text-danger small"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label required-field">Вес груза (кг)</label>
+                        <input asp-for="CargoWeight" class="form-control" type="number" step="0.01" placeholder="0.00" />
+                        <span asp-validation-for="CargoWeight" class="text-danger small"></span> 
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label required-field">Дата забора груза</label>
+                        <input asp-for="PickupDate" class="form-control" type="date" />
+                        <span asp-validation-for="PickupDate" class="text-danger small"></span>
+                    </div>
+                </div>
+
+                <div class="button-container">
+                    <a asp-action="Index" class="btn btn-outline-secondary ">
+                        <i class="bi bi-x-lg"></i> Отмена
+                    </a>
+                    <button type="submit" class="btn btn-gradient ">
+                        <i class="bi bi-check-lg"></i> Создать заказ
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

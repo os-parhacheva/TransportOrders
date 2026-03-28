@@ -1,0 +1,79 @@
+﻿/* Градиентный текст */
+.gradient-text {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Стиль для градиентной кнопки */
+.btn-gradient {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    color: white;
+    padding: 0.5rem 1.5rem;
+    transition: all 0.3s ease;
+}
+
+    .btn-gradient:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        color: white;
+    }
+
+    .btn-gradient:active {
+        transform: translateY(0);
+    }
+
+/* Стили для таблицы */
+.table {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0,0,0,0.05);
+
+}
+    .table thead {
+        --bs-table-bg: transparent !important;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+        .table thead th {
+            padding: 1rem;
+            font-weight: 600;
+            color: white !important;
+            text-align: left; 
+            vertical-align: middle; 
+        }
+
+    .table tbody tr {        
+        transition: all 0.3s ease;
+    }
+
+        .table tbody tr:hover {            
+            background-color: rgba(102, 126, 234, 0.05);
+            transform: scale(1.01);
+        }
+
+    .table tbody td {
+        border: none !important;
+        vertical-align: middle;
+        padding: 1rem;
+    }
+
+/* Стили для модального окна */
+.modal-content {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(0,0,0,0.2);
+}
+
+.modal-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white !important;
+    border-bottom: none;
+    padding: 1.25rem 1.5rem;
+}
+
+.modal-body {
+    padding: 1.5rem;
+}

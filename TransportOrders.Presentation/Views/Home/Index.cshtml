@@ -1,0 +1,112 @@
+﻿@using TransportOrders.Presentation.Models.DTO
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+@model List<OrderDTO>
+
+<div class="container mt-4">
+    <!-- Заголовок и кнопка создания заказа -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="mb-0 gradient-text">
+            <i class="bi bi-list-check"></i> Список заказов
+        </h2>
+        <button class="btn btn-gradient" type="button" onclick="location.href='@Url.Action("CreateOrder", "Home")'">
+            <i class="bi bi-plus-circle"></i> Создать заказ
+        </button>
+    </div>
+
+@if (Model == null || !Model.Any())
+{
+    <p>Заказы отсутсвуют</p>
+}
+else
+{ 
+    <table class="table table-hover">
+        <thead class="table table thead">
+            <tr >
+                <th>№</th>
+                <th>Номер заказа</th>
+                <th>Город отправителя</th>
+                <th>Адрес отправителя</th>
+                <th>Город получателя</th>
+                <th>Адрес получателя</th>
+                <th>Вес, кг</th>
+                <th>Дата забора</th>                    
+            </tr>
+        </thead>
+        <tbody>
+        @{
+            int index = 1;
+        }
+        @foreach( var order in Model )
+        {
+            <tr onclick="showOrder('@order.Id')" style="cursor: pointer;">
+                <td>@index</td>
+                <td>@order.Id</td>
+                <td>@order.CitySender</td>
+                <td>@order.AddressSender</td>
+                <td>@order.CityRecipient</td>
+                <td>@order.AddressRecipient</td> 
+                <td>@order.CargoWeight</td>
+                <td>@order.PickupDate.ToShortDateString()</td>                        
+            </tr>
+            index++;
+        }
+        </tbody>
+    </table>
+    
+}
+<div class="modal fade" id="orderModal" tabindex="-1" >
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+
+            <div class="modal-header" >
+                    <h5 class="modal-title">
+                        <i class="bi bi-info-circle"></i> Информация о заказе
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body" id="orderDetails">
+                <!-- блок для подробной информации -->                    
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</div>
+
+<script>
+    async function loadOrderDetails(orderId) {
+        const response = await fetch(`/Home/Details/${orderId}`);
+
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
+        }
+
+        return await response.text();
+    }
+
+    async function showOrder(orderId) {
+        const detailsContainer = document.getElementById("orderDetails");
+
+        if (!detailsContainer) {
+            console.error("Container not found");
+            return;
+        }
+            
+        try {
+            const html = await loadOrderDetails(orderId);
+            detailsContainer.innerHTML = html;
+
+            const modal = new bootstrap.Modal(document.getElementById('orderModal'));
+            
+            document.activeElement.blur();
+            modal.show();
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+</script>
