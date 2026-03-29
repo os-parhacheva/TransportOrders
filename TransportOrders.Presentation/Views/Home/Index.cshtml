@@ -44,10 +44,10 @@
                 <tr onclick="showOrder('@order.Id')" style="cursor: pointer;">
                     <td>@index</td>
                     <td>@order.Id</td>
-                    <td>@order.CitySender</td>
-                    <td>@order.AddressSender</td>
-                    <td>@order.CityRecipient</td>
-                    <td>@order.AddressRecipient</td> 
+                    <td class="address-cell">@order.CitySender</td>
+                    <td class="address-cell">@order.AddressSender</td>
+                    <td class="address-cell">@order.CityRecipient</td>
+                    <td class="address-cell">@order.AddressRecipient</td> 
                     <td>@order.CargoWeight</td>
                     <td>@order.PickupDate.ToShortDateString()</td>                        
                 </tr>

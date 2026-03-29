@@ -59,6 +59,13 @@
         padding: 1rem;
     }
 
+.address-cell {
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 /* Стили для модального окна */
 .modal-content {
     border: none;
